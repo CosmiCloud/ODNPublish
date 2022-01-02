@@ -88,4 +88,3 @@ async function publish(){
         console.log('\x1b[31m',e);
     }
   }
-publish();
