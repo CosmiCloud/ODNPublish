@@ -2,6 +2,21 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const randomWords = require('random-words');
 const DKGClient = require('dkg-client');
+const axios = require("axios");
+const fs = require('fs');
+
+const api = axios.create({
+  baseURL: "https://www.wikidata.org/wiki/Special:EntityData/",
+});
+
+const dataId = Math.floor(Math.random() * 9999999);
+
+api.get(`Q${dataId}.jsonld`).then((res) => {
+  console.log('\x1b[35mReceived wikidata json-ld string, writing to file...');
+  fs.writeFileSync("wikidata.json", JSON.stringify(res.data));  
+  console.log('\x1b[35mFinished writing to file'); 
+  publish();
+});
 
 const OT_NODE_HOSTNAME = '0.0.0.0';
 const OT_NODE_PORT = '8900';
@@ -23,7 +38,7 @@ async function publish(){
 	  keywords = await randomWords({ min: 3, max: 10 })
 	  
       publish_options = {
-          filepath: './Product.json',
+          filepath: './wikidata.json',
           assets: ['0x123456789123456789123456789'],
           keywords: keywords,
           visibility: true
