@@ -23,7 +23,7 @@ async function publish(){
 	  keywords = await randomWords({ min: 3, max: 10 })
 	  
       publish_options = {
-          filepath: './Product.json',
+          filepath: '/root/ODNPublish/Product.json',
           assets: ['0x123456789123456789123456789'],
           keywords: keywords,
           visibility: true
