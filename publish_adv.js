@@ -2,7 +2,10 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const randomWords = require('random-words');
 const DKGClient = require('dkg-client');
+const axios = require("axios");
+const fs = require('fs');
 
+const dataId = Math.floor(Math.random() * 9999999);
 const OT_NODE_HOSTNAME = '0.0.0.0';
 const OT_NODE_PORT = '8900';
 
@@ -20,16 +23,29 @@ async function publish(){
         console.log(' ')
       });
 	  
+	  const api = await axios.create({
+		 baseURL: "https://www.wikidata.org/wiki/Special:EntityData/",
+	  });
+
+	  const dataId = Math.floor(Math.random() * 9999999);
+
+	  await api.get(`Q${dataId}.jsonld`).then((result) => {
+		console.log('\x1b[35mReceived wikidata json-ld string, writing to file "wikidata.json" in this directory...');
+		fs.writeFileSync("/root/ODNPublish/wikidata.json", JSON.stringify(result.data));  
+		console.log('\x1b[32mFinished writing to data file!');
+		console.log(' ');
+	  });
+	  
 	  keywords = await randomWords({ min: 3, max: 10 })
 	  
       publish_options = {
-          filepath: './Product.json',
+          filepath: '/root/ODNPublish/wikidata.json',
           assets: ['0x123456789123456789123456789'],
           keywords: keywords,
           visibility: true
       };
 
-      console.log('\x1b[35mPublishing Product.json found in this directory...')
+      console.log('\x1b[35mPublishing wikidata.json found in this directory...')
 	  console.log('\x1b[35mPublishing data with random keywords: \x1b[32m'+keywords)
       await dkg.publish(publish_options).then((result) => {
           if(result.status == 'FAILED'){
@@ -49,7 +65,7 @@ async function publish(){
               ]
           };
 
-          console.log('\x1b[35mWaiting for Assertion to complete...')
+          console.log('\x1b[35mWaiting for Assetion to complete...')
           dkg.resolve(assertion_options).then((result) => {
             if(result.status == 'FAILED'){
               console.log('\x1b[31mAssertion Failed!')
@@ -67,7 +83,8 @@ async function publish(){
             console.log('\x1b[35mCheck out your node logs to see your node working!')
           });
       });
-
+	const snooze = ms => new Promise(resolve => setTimeout(resolve, ms));
+        await snooze(10000);
     })();
     }catch(e){
         console.log('\x1b[31m',e);
