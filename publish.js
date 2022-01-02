@@ -49,7 +49,7 @@ async function publish(){
               ]
           };
 
-          console.log('\x1b[35mWaiting for Assetion to complete...')
+          console.log('\x1b[35mWaiting for Assertion to complete...')
           dkg.resolve(assertion_options).then((result) => {
             if(result.status == 'FAILED'){
               console.log('\x1b[31mAssertion Failed!')
