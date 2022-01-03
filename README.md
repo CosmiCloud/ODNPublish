@@ -1,9 +1,9 @@
 # ODNPublish
 Currently, SSL needs disabled to use this script.
 
-With a running Origintrail V6 Beta 1 testnode, run: sudo git clone https://github.com/CosmiCloud/ODNPublish.git && cd ODNPublish && sudo npm install prompts && sudo npm install dkg-client@beta.1 && sudo npm install random-words && sudo node publish.js
+With a running Origintrail V6 Beta 1 testnode, run: sudo git clone https://github.com/CosmiCloud/ODNPublish.git && cd ODNPublish && sudo npm install prompts && sudo npm install dkg-client@beta.1 && sudo node publish.js
 
-'Advanced Publish' - Large datasets may slow down your node - Run: sudo git clone https://github.com/CosmiCloud/ODNPublish.git && cd ODNPublish && sudo npm install prompts && sudo npm install dkg-client@beta.1 && sudo npm install random-words && sudo npm install axios && sudo node publish_adv.js
+'Advanced Publish' - Large datasets may slow down your node - Run: sudo git clone https://github.com/CosmiCloud/ODNPublish.git && cd ODNPublish && sudo npm install prompts && sudo npm install dkg-client@beta.1 && sudo npm install axios && sudo node publish_adv.js
 
 -----STRESS TESTING----- <br>
 Help stress test! Max out your node to see how it performs under pressure. These cronjobs will initiate a publish every 6 seconds. If you have less RAM you can reduce the frequency and bring the demand within your nodes limits.
