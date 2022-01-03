@@ -1,10 +1,28 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
-const randomWords = require('random-words');
 const DKGClient = require('dkg-client');
 
 const OT_NODE_HOSTNAME = '0.0.0.0';
 const OT_NODE_PORT = '8900';
+
+function randomWord(length) {
+  let result = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; ++i) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+function randomWordArray() {
+  let result = [];
+  for (let i = 0; i < Math.floor(Math.random() * 10) + 3; ++i) {
+    result.push(randomWord(Math.floor(Math.random() * 25) + 5));
+  }
+  return result;
+}
 
 async function publish(){
   try{
@@ -20,7 +38,7 @@ async function publish(){
         console.log(' ')
       });
 	  
-	  keywords = await randomWords({ min: 3, max: 10 })
+      const keywords = randomWordArray().reduce((str1, str2) => str1 + "," + str2);
 	  
       publish_options = {
           filepath: '/root/ODNPublish/Product.json',
