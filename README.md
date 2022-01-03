@@ -7,6 +7,7 @@ Running Origintrail V6 Beta 1 testnode required.
 Run: sudo git clone https://github.com/CosmiCloud/ODNPublish.git && cd ODNPublish && sudo npm install prompts && sudo npm install dkg-client@beta.1 && sudo node publish.js
 
 -----ADVANCED PUBLISH----- <br>
+This pulls down a random json dataset from wikidata to publish. 
 Large datasets may slow down your node. It is not recommended to stress test with this script- Run: sudo git clone https://github.com/CosmiCloud/ODNPublish.git && cd ODNPublish && sudo npm install prompts && sudo npm install dkg-client@beta.1 && sudo npm install axios && sudo node publish_adv.js
 
 -----STRESS TESTING----- <br>
