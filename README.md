@@ -10,7 +10,7 @@ Help stress test! Max out your node to see how it performs under pressure. These
 
 At least 2cpu and 6gb RAM required. 
 1 publish every 4-5 seconds means you will use .2858 test matic per hour. 
-You can fill up easily if you run out here: https://faucet.polygon.technology/
+You can fill up easily if you run out here: https://faucet.polygon.technology/. Check out your node wallet to see your publishes onchain.
 
 Run: crontab -e
 <p>
