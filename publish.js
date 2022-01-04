@@ -36,7 +36,7 @@ const publish = async () => {
         console.log(' ')
       });
 
-      const keywords = randomWordArray().reduce((str1, str2) => str1 + "," + str2);
+      const keywords = randomWordArray();
 
       publish_options = {
           filepath: '/root/ODNPublish/Product.json',
@@ -85,4 +85,4 @@ const publish = async () => {
       });
 
     };
-publish().catch((error) => console.log(error));
+publish().catch((error) => console.log(`\x1b[35m${error}`));
