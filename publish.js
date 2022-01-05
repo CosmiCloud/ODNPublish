@@ -24,9 +24,7 @@ function randomWordArray() {
   return result;
 }
 
-async function publish(){
-  try{
-    (async () => {
+const publish = async () => {
       // initialize connection to your DKG Node
       let options = { endpoint: OT_NODE_HOSTNAME, port: OT_NODE_PORT, useSSL: false, loglevel: 'info' };
       const dkg = new DKGClient(options);
@@ -37,9 +35,9 @@ async function publish(){
         console.log('\x1b[35mCurrently running OT Node version: \x1b[32m'+result.version)
         console.log(' ')
       });
-	  
-      const keywords = randomWordArray().reduce((str1, str2) => str1 + "," + str2);
-	  
+
+      const keywords = randomWordArray();
+
       publish_options = {
           filepath: '/root/ODNPublish/Product.json',
           assets: ['0x123456789123456789123456789'],
@@ -48,7 +46,7 @@ async function publish(){
       };
 
       console.log('\x1b[35mPublishing Product.json found in this directory...')
-	  console.log('\x1b[35mPublishing data with random keywords: \x1b[32m'+keywords)
+          console.log('\x1b[35mPublishing data with random keywords: \x1b[32m'+keywords)
       await dkg.publish(publish_options).then((result) => {
           if(result.status == 'FAILED'){
             console.log('\x1b[31mPublish Failed!')
@@ -86,9 +84,5 @@ async function publish(){
           });
       });
 
-    })();
-    }catch(e){
-        console.log('\x1b[31m',e);
-    }
-  }
-publish();
+    };
+publish().catch((error) => console.log(`\x1b[35m${error}`));
