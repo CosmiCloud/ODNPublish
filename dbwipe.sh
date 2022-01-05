@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ot-node
+cd /root/ot-node
 
 systemctl stop cron
 forever stop index.js
