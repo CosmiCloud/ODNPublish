@@ -26,7 +26,7 @@ function randomWordArray() {
 
 const publish = async () => {
       // initialize connection to your DKG Node
-      let options = { endpoint: OT_NODE_HOSTNAME, port: OT_NODE_PORT, useSSL: false, loglevel: 'info' };
+      let options = { endpoint: OT_NODE_HOSTNAME, port: OT_NODE_PORT, useSSL: false, loglevel: 'info', maxNumberOfRetries: 100 };
       const dkg = new DKGClient(options);
 
       // get info about endpoint that you are connected to
