@@ -4,7 +4,7 @@ Currently, SSL needs disabled to use this script.
 Running Origintrail V6 Beta 1 testnode required.
 
 -----PUBLISH----- <br>
-Run: sudo git clone https://github.com/CosmiCloud/ODNPublish.git && cd ODNPublish && sudo npm install prompts && sudo npm install dkg-client@beta.1 && sudo node publish.js
+Run: sudo git clone https://github.com/CosmiCloud/ODNPublish.git && cd ODNPublish && sudo npm install prompts && sudo npm install dkg-client@beta.1 && sudo node publish.js && ./run_publish.sh
 
 -----ADVANCED PUBLISH----- <br>
 This pulls down a random json dataset from wikidata to publish.<br> 
