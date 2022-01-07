@@ -2,5 +2,5 @@
 
 while true
 do
-    node publish_adv.js
+    node publish.js
 done
