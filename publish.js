@@ -42,7 +42,7 @@ const publish = async () => {
           filepath: '/root/ODNPublish/Product.json',
           assets: ['0x123456789123456789123456789'],
           keywords: keywords,
-          visibility: true
+          visibility: "public"
       };
 
       console.log('\x1b[35mPublishing Product.json found in this directory...')
